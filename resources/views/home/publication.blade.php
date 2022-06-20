@@ -24,13 +24,17 @@
                             <div class="card-body">
                                 <h5 class="card-title">Roberto</h5>
                                 <p class="card-text">Consigue la forma másmoderna y eficiente de almacenar datos en la nube.</p>
-                                <a href="/chat" class="btn btn-primary" style="margin-right: 100%;">Comentar</a>
+                                <a href="/chat/Roberto" class="btn btn-primary" style="">Comentar como Roberto</a>
+                        <a href="/chat/Carlos" class="btn btn-primary" style="">Comentar como Carlos</a>
                             </div>
                         </div>
-
+                        
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-2">
+                        
+                    </div>
                 </div>
+                
 
             </div>
         </section>

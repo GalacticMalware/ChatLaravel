@@ -14,12 +14,12 @@ class SendMessage implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    public $name;
     public $message;
 
-    public function __construct($user,$message)
+    public function __construct($name,$message)
     {
-        $this->user = $user;
+        $this->name = $name;
         $this->message = $message;
     }
 
