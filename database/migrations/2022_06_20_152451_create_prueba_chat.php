@@ -18,6 +18,7 @@ class CreatePruebaChat extends Migration
             $table->string("name");
             $table->text("message");
             $table->string("file");
+            $table->string("typeFile");
             $table->timestamps();
         });
     }
