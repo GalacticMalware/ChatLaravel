@@ -13,7 +13,7 @@ class Chat extends Model
 
     protected $table = "chat";
     protected $fillable = [
-        "name","message"
+        "name","message","file","typeFile"
     ];
 
     protected $hidden = [

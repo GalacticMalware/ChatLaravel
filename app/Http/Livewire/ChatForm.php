@@ -2,26 +2,23 @@
 
 namespace App\Http\Livewire;
 
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Contracts\Container\Container;
-use Illuminate\Routing\Route;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\TemporaryUploadedFile;
 
 class ChatForm extends Component
 {
 
     public $name = "";
     public $message = "";
-    public $n = "";
+    public $file;
+    public $typeFile = "";
+
+    use WithFileUploads;
     
-    private $faker;
-
-    protected $updatesQueryString = ['name'];
-
     
     public function index($n)
-    {
-        $this->n = $n;
+    {  
         return view('home.chat');
     }
 
@@ -49,17 +46,25 @@ class ChatForm extends Component
 
     public function sendMessage()
     {
-        $this->name = $this->n;
+        
         $this->validate([
             "name" => "required|min:3",
             "message" => "required"
         ]);
 
-        $data = ["name" => $this->name, "message" => $this->message];
+        $dataFile = $this->file == null ? "" : $this->file->store('upload',"public");
+        $dataType = $this->file == null ? "" : explode('.',$this->file->store('upload',"public"))[1];
+
+        //dd($dataFile);
+        $data = ["name" => $this->name, "message" => $this->message, "file"=>$dataFile,"typeFile"=>$dataType];
+
 
         $this->emit("successAler");
-        //$this->emit("sendMessage", $data);
-        
-        event(new \App\Events\SendMessage($this->name,$this->message));
+        $this->emit("sendMessage", $data);
+        $this->message = "";
+        $this->file = "";
+        //dd();
+        //event(new \App\Events\SendMessage($this->name,$this->message,$this->file,$this->typeFile));
+
     }
 }

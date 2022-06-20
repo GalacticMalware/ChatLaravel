@@ -16,11 +16,17 @@ class SendMessage implements ShouldBroadcast
 
     public $name;
     public $message;
+    public $file;
+    public $typeFile;
 
-    public function __construct($name,$message)
-    {
+    public function __construct($name,$message,$file,$typeFile)
+    {   
+        $filter = $file == null ? "" : $file->store('upload',"public");
+        $filterType = $file == null ? "" : explode('.',$file->store('upload',"public"))[1];
         $this->name = $name;
         $this->message = $message;
+        $this->file = $filter;
+        $this->typeFile = $filterType;
     }
 
     public function broadcastOn()

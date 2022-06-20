@@ -15,8 +15,9 @@ class CreatePruebaChat extends Migration
     {
         Schema::create('chat', function (Blueprint $table) {
             $table->id();
-            $table->string("usuario");
-            $table->text("mensaje");
+            $table->string("name");
+            $table->text("message");
+            $table->string("file");
             $table->timestamps();
         });
     }
