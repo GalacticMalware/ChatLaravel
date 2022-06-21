@@ -5,15 +5,15 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Chat;
 
-use function Psy\debug;
-
 class ChatList extends Component
 {
     public $messages;
     public $data;
     public $name;
 
-    protected $listeners = ["sendMessage" => "messageReceived"];
+    public $v = 1;
+
+    protected $listeners = ["messageReceived"];
 
     public function mount()
     {
@@ -25,22 +25,25 @@ class ChatList extends Component
 
     public function messageReceived($message)
     {
-        //dd($message);
-        //$this->messages[] = $message;
-            $chat = new Chat;
-            $chat->name = $message["name"];
-            $chat->message = $message["message"];
-            $chat->file = $message["file"] == null ? "" : $message['file'];
-            $chat->typeFile = $message["typeFile"] == null ? "" : $message['typeFile'];
-            $chat->save();
+        $this->messages = [];
+        return $this->getData();
+       // array_shift($this->getMessages(),$message);  
     }
 
-    public function render()
-    {
-        $data = Chat::orderBy('id', 'ASC')->get();
+    public function addMessage($data){
+        $this->messages[] = $data;
+    }
+   
 
-        $this->messages = strlen($data) == 0 ? [] : $data;
-    
+    public function render()
+    {   
+        $this->getData();
         return view('livewire.chat-list');
+    }
+
+    public function getData(){
+        
+        $data = Chat::orderBy('id', 'ASC')->get();
+        $this->messages = strlen($data) == 0 ? [] : $data;
     }
 }

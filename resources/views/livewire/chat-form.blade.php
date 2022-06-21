@@ -1,7 +1,7 @@
 <div>
     {{ csrf_field() }}
 
-    <form wire:submit.prevent="sendMessage" enctype="multipart/form-data">
+    <form wire:submit.prevent="sendMessageFile" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Nombre</label>
             <input required type="text" disabled class="form-control" id="name" wire:model="name">

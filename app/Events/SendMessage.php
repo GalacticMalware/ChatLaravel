@@ -35,6 +35,7 @@ class SendMessage implements ShouldBroadcast
     }
 
     public function broadcastAs(){
+        
         return 'chat-event';
     }
 }
