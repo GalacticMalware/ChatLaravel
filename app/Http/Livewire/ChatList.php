@@ -23,7 +23,7 @@ class ChatList extends Component
         $this->name = explode("/", $_SERVER['REQUEST_URI'])[2];
     }
 
-    public function messageReceived($message)
+    public function messageReceived()
     {
         $this->messages = [];
         return $this->getData();

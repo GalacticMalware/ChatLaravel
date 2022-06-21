@@ -9,7 +9,7 @@
     @if($message["file"] != '')
       @switch($message["typeFile"])
         @case($message["typeFile"] == 'png' || $message["typeFile"] == 'jpg')
-          <img src="/storage/{{ $message['file'] }}" style="width:54px; max-height:54px;" alt="">
+        <a target="_blank" href="/storage/{{ $message['file'] }}"><img src="/storage/{{ $message['file'] }}" style="width:54px; max-height:54px;" alt=""></a>
         @break
         @case($message["typeFile"] == 'ogg' || $message["typeFile"] == 'mpeg')
           <audio src="/storage/{{ $message['file'] }}" style="width:54px; max-height:54px;" alt="">
@@ -29,7 +29,7 @@
     @if($message["file"] != '')
       @switch($message["typeFile"])
         @case($message["typeFile"] == 'png' || $message["typeFile"] == 'jpg')
-          <img src="/storage/{{ $message['file'] }}" style="width:54px; max-height:54px;" alt="">
+          <a target="_blank" href="/storage/{{ $message['file'] }}"><img  src="/storage/{{ $message['file'] }}" style="width:54px; max-height:54px;" alt=""></a>
         @break
         @case($message["typeFile"] == 'ogg' || $message["typeFile"] == 'mpeg')
           <audio src="/storage/{{ $message['file'] }}" style="width:54px; max-height:54px;" alt="">
@@ -56,7 +56,7 @@
 
     var channel = pusher.subscribe('chat-channel');
     channel.bind('chat-event', function(data) {
-      window.livewire.emit('messageReceived', data)
+      window.livewire.emit('messageReceived')
       //alert(JSON.stringify(data));
     });
   </script>
